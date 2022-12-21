@@ -39,7 +39,7 @@ interface FontDescription {
     version: number;
     tags: Array<FontTag>; // Will allow for searching later on
 
-    lastModified: number; // seconds
+    last_modified: number; // seconds
     variants: Array<FontVariant>;
     files: Record<FontVariant, string>;
 }
@@ -113,7 +113,7 @@ function webfontToFontDescription(font: Schema$Webfont): FontDescription {
         display_name: font.family,
         tags,
         files,
-        lastModified: dateStringToDateTime(font.lastModified).toUnixInteger(),
+        last_modified: dateStringToDateTime(font.lastModified).toUnixInteger(),
         version: versionToNumber(font.version),
         variants
     };
