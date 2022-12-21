@@ -2,7 +2,7 @@
   "name": "fontpm-data",
   "version": "0.1.0",
   "scripts": {
-    "collect:google": "OUTPUT_FILE=$(realpath data/google-fonts.json) ts-node scripts/collect-google.ts",
+    "collect:google": "OUTPUT_FILE=data/google-fonts.json ts-node scripts/collect-google.ts",
     "collect": "run-p collect:*"
   },
   "dependencies": {},

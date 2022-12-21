@@ -2,7 +2,6 @@ import { config } from "dotenv";
 config();
 
 import { DateTime } from "luxon";
-import { writeFile } from "fs/promises";
 
 const { GOOGLE_WEB_FONTS_API_KEY, OUTPUT_FILE } = process.env;
 
@@ -20,7 +19,7 @@ const outputFile = OUTPUT_FILE as string;
 
 import {webfonts as GoogleWebfonts, webfonts_v1} from '@googleapis/webfonts';
 import Schema$Webfont = webfonts_v1.Schema$Webfont;
-import * as path from "path";
+import { write } from "./util";
 
 const webfonts = GoogleWebfonts({
     version: 'v1',
@@ -153,13 +152,11 @@ async function collectAll(): Promise<Indices> {
     };
 }
 
-async function write(data: any) {
-    await writeFile(path.resolve(outputFile), JSON.stringify(data));
-}
+
 
 async function collectAndWrite() {
     const data = await collectAll();
-    await write(data);
+    await write(outputFile, data);
 }
 
 collectAndWrite().then(() => console.log("Success!")).catch((e) => console.error("Error! %O", e));
