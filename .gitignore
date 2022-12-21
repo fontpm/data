@@ -1,0 +1,11 @@
+# Build output
+scripts/*.js
+
+# Node
+node_modules/
+yarn.lock
+bun.lockb
+
+# Private files
+.env
+.env.*
